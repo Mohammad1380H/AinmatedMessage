@@ -1,10 +1,10 @@
 # animations
 
-A new Flutter project.
+An Animated widgwt to show a message (done or failed message).
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+There is example and widget in this repository.
 
 A few resources to get you started if this is your first Flutter project:
 
