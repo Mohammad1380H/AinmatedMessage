@@ -1,5 +1,4 @@
-import 'package:animations/doneAinmatedLogo.dart';
-import 'package:animations/home.dart';
+import 'package:animations/animated_message_dialog.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,12 +16,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const DoneAnimatedLogo(
+      home: const AnimatedMessageDialog(
         isDone: true,
         message: 'اطلاعات صحیح است',
         milliseconds: 250,
-        
-
       ),
     );
   }

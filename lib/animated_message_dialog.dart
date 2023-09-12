@@ -2,30 +2,35 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class DoneAnimatedLogo extends StatefulWidget {
-  const DoneAnimatedLogo({super.key,required this.message,required this.isDone, this.size = 60, this.milliseconds = 900});
+class AnimatedMessageDialog extends StatefulWidget {
+  const AnimatedMessageDialog(
+      {super.key,
+      required this.message,
+      required this.isDone,
+      this.size = 60,
+      this.milliseconds = 900});
   final String? message;
   final int? milliseconds;
   final int? size;
   final bool? isDone;
   @override
-  State<DoneAnimatedLogo> createState() => _DoneAnimatedLogoState();
+  State<AnimatedMessageDialog> createState() => _AnimatedMessageDialogState();
 }
 
-class _DoneAnimatedLogoState extends State<DoneAnimatedLogo>
+class _AnimatedMessageDialogState extends State<AnimatedMessageDialog>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late final Animation<double> rotationAnimation =
       Tween<double>(begin: 0, end: 2 * pi).animate(_animationController);
-  late final Animation<Color?> colorAnimation =
-      ColorTween(begin: Colors.blue, end: widget.isDone!?Colors.green:Colors.red)
-          .animate(_animationController);
+  late final Animation<Color?> colorAnimation = ColorTween(
+          begin: Colors.blue, end: widget.isDone! ? Colors.green : Colors.red)
+      .animate(_animationController);
   bool isLiked = false;
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
-        vsync: this, duration:  Duration(milliseconds: widget.milliseconds!));
+        vsync: this, duration: Duration(milliseconds: widget.milliseconds!));
     _animationController.forward();
   }
 
@@ -47,10 +52,10 @@ class _DoneAnimatedLogoState extends State<DoneAnimatedLogo>
                     height: _animationController.value * widget.size!,
                     decoration: BoxDecoration(
                         color: colorAnimation.value,
-                        borderRadius: BorderRadius.circular(widget.size!/2)),
+                        borderRadius: BorderRadius.circular(widget.size! / 2)),
                     child: Icon(
-                      widget.isDone!? Icons.done:Icons.close,
-                      size: _animationController.value * widget.size!/2,
+                      widget.isDone! ? Icons.done : Icons.close,
+                      size: _animationController.value * widget.size! / 2,
                       color: Colors.white,
                     ),
                   ),
@@ -60,7 +65,7 @@ class _DoneAnimatedLogoState extends State<DoneAnimatedLogo>
                     child: Text(
                       widget.message!,
                       style: TextStyle(
-                        fontSize:widget.size!/3.5,
+                        fontSize: widget.size! / 3.5,
                       ),
                     ))
               ],
